@@ -31,6 +31,11 @@ Hospitality intelligence and booking platform for independent restaurants and bo
 - `docs/risks.md` — Technical risk assessment
 - `.bmad/project-brief.md` — One-page project summary
 
+## URLs
+- **Vercel**: https://tove-mvp.vercel.app
+- **Supabase**: https://zgjtjbwrnfkfjrwfefby.supabase.co
+- **GitHub**: https://github.com/jarodsutphin/tove_mvp
+
 ## Project Context
 - First restaurant target: Davidson, NC (personal network)
 - First hotel target: Davidson Village Inn (18 rooms, owner-operated)
