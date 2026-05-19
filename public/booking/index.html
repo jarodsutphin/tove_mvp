@@ -3,8 +3,542 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tove</title>
+  <title>Reserve a Table &mdash; Kindred</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100..900&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../css/base/reset.css">
+  <link rel="stylesheet" href="../../css/base/tokens.css">
+  <link rel="stylesheet" href="../../css/base/typography.css">
+  <link rel="stylesheet" href="../../css/pages/booking.css">
 </head>
 <body>
+
+<main class="booking-page">
+
+  <!-- ── Masthead: mobile = restaurant photo · desktop = nav bar ── -->
+  <header class="masthead" role="banner">
+    <img class="masthead__bg"
+         src="https://www.figma.com/api/mcp/asset/7fea66a6-0192-47b2-b873-367e6710b034"
+         alt="Kindred restaurant interior">
+
+    <!-- Desktop nav (hidden on mobile via CSS) -->
+    <nav class="site-nav" aria-label="Kindred navigation">
+      <a href="#" class="site-nav__logo-link" aria-label="Kindred home">
+        <img class="site-nav__logo"
+             src="https://www.figma.com/api/mcp/asset/09b04f12-efaa-42f7-81cb-4c6683caf659"
+             alt="Kindred">
+      </a>
+      <ul class="site-nav__links" role="list">
+        <!-- Populated by content.js -->
+      </ul>
+      <div class="site-nav__actions">
+        <a class="site-nav__icon-btn" href="#"
+           aria-label="Kindred on Instagram" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a class="site-nav__cart-btn" href="#" aria-label="Cart: 0 items">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="site-nav__cart-count" aria-hidden="true">0</span>
+        </a>
+        <a class="site-nav__order-btn" href="#"></a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Reservation header">
+    <div class="hero__backdrop" aria-hidden="true">
+      <img class="hero__bg"
+           src="https://www.figma.com/api/mcp/asset/3a2ac199-faef-4ce6-98ef-77df3d75b3c1"
+           alt="">
+      <div class="hero__overlay"></div>
+    </div>
+    <span class="hero__eyebrow"></span>
+    <h1 class="hero__title"></h1>
+  </section>
+
+  <!-- ── Booking selector ──────────────────────────────────────── -->
+  <section class="booking-selector" aria-label="Reservation details">
+
+    <!-- Dropdowns row -->
+    <div class="dropdowns" role="group" aria-label="Party size, date, and preferred time">
+
+      <!-- Party size -->
+      <div class="dropdown" data-type="party">
+        <button class="dropdown__trigger" type="button"
+                aria-haspopup="listbox" aria-expanded="false"
+                aria-label="Party size">
+          <span class="dropdown__value">Party of 2</span>
+          <svg class="dropdown__caret" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3.5 5.5L8 10.5L12.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="dropdown__panel" id="partyPanel" hidden role="listbox" aria-label="Number of guests">
+          <div class="dropdown__option" role="option" aria-selected="false" data-value="1">1</div>
+          <div class="dropdown__option" role="option" aria-selected="false" data-value="2">2</div>
+          <div class="dropdown__option" role="option" aria-selected="false" data-value="3">3</div>
+          <div class="dropdown__option" role="option" aria-selected="false" data-value="4">4</div>
+          <div class="dropdown__option" role="option" aria-selected="false" data-value="5">5</div>
+          <div class="dropdown__option" role="option" aria-selected="false" data-value="6">6</div>
+          <div class="dropdown__option" role="option" aria-selected="false" data-value="7">7</div>
+          <div class="dropdown__option" role="option" aria-selected="false" data-value="8">8</div>
+        </div>
+      </div>
+
+      <!-- Date (toggles inline datepicker) -->
+      <div class="dropdown" data-type="date">
+        <button class="dropdown__trigger" type="button"
+                aria-expanded="false"
+                aria-controls="datepicker"
+                aria-label="Select date">
+          <span class="dropdown__value" id="dateLabel"></span>
+          <svg class="dropdown__caret" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3.5 5.5L8 10.5L12.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Preferred time -->
+      <div class="dropdown" data-type="time">
+        <button class="dropdown__trigger" type="button"
+                aria-haspopup="listbox" aria-expanded="false"
+                aria-label="Preferred time">
+          <span class="dropdown__value">Any time</span>
+          <svg class="dropdown__caret" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3.5 5.5L8 10.5L12.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="dropdown__panel" id="timePanel" hidden role="listbox" aria-label="Preferred time options">
+          <!-- Populated by TimePicker -->
+        </div>
+      </div>
+
+    </div><!-- /dropdowns -->
+
+    <!-- Inline datepicker (shown when date dropdown is tapped) -->
+    <div class="datepicker" id="datepicker" hidden aria-label="Select a date">
+      <!-- Populated by DatePicker -->
+    </div>
+
+    <!-- Available times -->
+    <div class="available-times" id="availableTimes">
+      <div class="times__header">
+        <p class="times__title"></p>
+        <p class="times__sub"></p>
+      </div>
+      <div class="times__grid" id="timesGrid" role="group" aria-label="Available time slots">
+
+        <button class="time-btn" type="button" data-time="5:30 PM" data-location="Dining room">
+          <span class="time-btn__check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="time-btn__time">5:30 PM</span>
+          <span class="time-btn__location">Dining room</span>
+        </button>
+
+        <button class="time-btn" type="button" data-time="6:30 PM" data-location="Patio">
+          <span class="time-btn__check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="time-btn__time">6:30 PM</span>
+          <span class="time-btn__location">Patio</span>
+        </button>
+
+        <button class="time-btn" type="button" data-time="6:45 PM" data-location="Patio">
+          <span class="time-btn__check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="time-btn__time">6:45 PM</span>
+          <span class="time-btn__location">Patio</span>
+        </button>
+
+        <button class="time-btn" type="button" data-time="7:30 PM" data-location="Dining room">
+          <span class="time-btn__check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="time-btn__time">7:30 PM</span>
+          <span class="time-btn__location">Dining room</span>
+        </button>
+
+        <button class="time-btn" type="button" data-time="7:45 PM" data-location="Dining room">
+          <span class="time-btn__check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="time-btn__time">7:45 PM</span>
+          <span class="time-btn__location">Dining room</span>
+        </button>
+
+        <button class="time-btn" type="button" data-time="8:00 PM" data-location="Patio">
+          <span class="time-btn__check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="time-btn__time">8:00 PM</span>
+          <span class="time-btn__location">Patio</span>
+        </button>
+
+        <button class="time-btn" type="button" data-time="8:15 PM" data-location="Dining room">
+          <span class="time-btn__check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="time-btn__time">8:15 PM</span>
+          <span class="time-btn__location">Dining room</span>
+        </button>
+
+        <button class="time-btn" type="button" data-time="8:30 PM" data-location="Patio">
+          <span class="time-btn__check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="time-btn__time">8:30 PM</span>
+          <span class="time-btn__location">Patio</span>
+        </button>
+
+      </div>
+    </div><!-- /available-times -->
+
+    <!-- CTA: fixed/sticky on mobile, inline on desktop -->
+    <div class="sticky-cta">
+      <button class="sticky-cta__btn" id="reserveCta" type="button" disabled
+              aria-disabled="true" aria-label=""></button>
+    </div>
+
+  </section><!-- /booking-selector -->
+
+  <!-- ── Content grid: forecast + events + map ─────────────────── -->
+  <!-- On mobile: display:contents on __left flattens children so CSS
+       order can sequence them as forecast → events → map.
+       On desktop: __left becomes a flex column (forecast above map). -->
+  <div class="content-grid">
+
+    <div class="content-grid__left">
+      <!-- Forecast -->
+      <section class="forecast" aria-label="Weather forecast">
+        <div class="forecast-tile" role="img" aria-label="Forecast: 82°F, sunny">
+          <img class="forecast-tile__bg"
+               src="https://www.figma.com/api/mcp/asset/918db40c-e315-46c1-b080-e8bdd822a089"
+               alt="" aria-hidden="true">
+          <div class="forecast-tile__gradient" aria-hidden="true"></div>
+          <div class="forecast-tile__label" aria-hidden="true">
+            <span class="forecast-tile__label-text">FORECAST</span>
+          </div>
+          <div class="forecast-tile__details">
+            <p class="forecast-tile__temp">82&deg;F</p>
+            <p class="forecast-tile__desc">Plenty of sunshine with clear skies. Perfect for patio weather.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map -->
+      <div class="map-section" aria-label="Map showing Kindred location">
+        <iframe
+          src="https://maps.google.com/maps?q=Kindred+131+N+Main+St+Davidson+NC+28036&z=16&output=embed"
+          width="100%"
+          height="284"
+          style="border:0;display:block;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map: Kindred, 131 N Main St, Davidson, NC 28036">
+        </iframe>
+      </div>
+    </div><!-- /content-grid__left -->
+
+    <!-- Events -->
+    <section class="events" aria-label="Upcoming events in Davidson">
+      <div class="events__header">
+        <p class="events__title">Happening in Davidson</p>
+        <p class="events__sub">Events may impact reservation demand</p>
+      </div>
+      <div class="events__carousel" id="eventsCarousel" role="list">
+        <!-- Populated by _updateCarousel() -->
+      </div>
+    </section>
+
+  </div><!-- /content-grid -->
+
+  <!-- ── Business footer ──────────────────────────────────────── -->
+  <footer class="business-footer">
+    <img class="business-footer__logo"
+         src="https://www.figma.com/api/mcp/asset/1ee4a3d8-8139-4e52-9e5f-cca196ec2977"
+         alt="Kindred">
+    <a class="business-footer__address"
+       href="#"
+       target="_blank" rel="noopener noreferrer"></a>
+    <p class="business-footer__hours"></p>
+    <p class="business-footer__hours"></p>
+  </footer>
+
+</main><!-- /booking-page -->
+
+<script src="../../js/booking/date-picker.js"></script>
+<script src="../../js/booking/time-picker.js"></script>
+<script src="../../js/booking/content.js"></script>
+<script>
+  (() => {
+  // ── Populate from content ─────────────────────────────────────
+  document.querySelector('.site-nav__links').innerHTML =
+    CONTENT.BUSINESS.navLinks
+      .map(l => `<li><a class="site-nav__link" href="${l.href}">${l.label}</a></li>`)
+      .join('');
+  const orderBtn = document.querySelector('.site-nav__order-btn');
+  orderBtn.textContent = CONTENT.BUSINESS.orderOnlineLabel;
+  orderBtn.href        = CONTENT.BUSINESS.orderOnlineUrl;
+
+  document.querySelector('.hero__eyebrow').textContent = CONTENT.BOOKING.heroEyebrow;
+  document.querySelector('.hero__title').textContent   = CONTENT.BOOKING.heroTitle;
+
+  document.querySelector('.times__title').textContent = CONTENT.BOOKING.timesHeader;
+  document.querySelector('.times__sub').textContent   = CONTENT.BOOKING.timesSub;
+
+  const reserveCta = document.getElementById('reserveCta');
+  reserveCta.textContent = CONTENT.BOOKING.reserveCtaLabel;
+  reserveCta.setAttribute('aria-label', CONTENT.BOOKING.reserveCtaDisabledLabel);
+
+  document.getElementById('dateLabel').textContent = CONTENT.BOOKING.todayLabel;
+
+  const footerAddr = document.querySelector('.business-footer__address');
+  footerAddr.textContent = CONTENT.FOOTER.address;
+  footerAddr.href        = CONTENT.FOOTER.mapsUrl;
+  document.querySelectorAll('.business-footer__hours').forEach((el, i) => {
+    el.textContent = CONTENT.FOOTER.hours[i] ?? '';
+  });
+
+  // ── State ─────────────────────────────────────────────────────
+  const MONTH_SHORT = ['Jan','Feb','Mar','Apr','May','Jun',
+                       'Jul','Aug','Sep','Oct','Nov','Dec'];
+  const MONTH_FULL  = ['January','February','March','April','May','June',
+                       'July','August','September','October','November','December'];
+
+  const EVENTS = CONTENT.EVENTS;
+
+  const datepickerEl  = document.getElementById('datepicker');
+  const dateLabel     = document.getElementById('dateLabel');
+  const dateTrigger   = document.querySelector('[data-type="date"] .dropdown__trigger');
+  const partyTrigger  = document.querySelector('[data-type="party"] .dropdown__trigger');
+  const partyPanel    = document.getElementById('partyPanel');
+  const timeTrigger   = document.querySelector('[data-type="time"] .dropdown__trigger');
+  const timePanel     = document.getElementById('timePanel');
+  const timesGrid     = document.getElementById('timesGrid');
+  const carousel      = document.getElementById('eventsCarousel');
+
+  let selectedTime    = null;
+  let selectedDateStr = _todayStr();
+
+  function _todayStr() {
+    const t = new Date();
+    return [
+      t.getFullYear(),
+      String(t.getMonth() + 1).padStart(2, '0'),
+      String(t.getDate()).padStart(2, '0'),
+    ].join('-');
+  }
+
+  function _fmtDate(dateStr) {
+    const [, m, d] = dateStr.split('-').map(Number);
+    return `${MONTH_FULL[m - 1]} ${d}`;
+  }
+
+  function _isDesktop() {
+    return window.matchMedia('(min-width: 768px)').matches;
+  }
+
+  function _updateCarousel(dateStr, smooth = false) {
+    const sorted = [...EVENTS].sort((a, b) => a.date.localeCompare(b.date));
+    const prev   = sorted.filter(e => e.date < dateStr);
+    const curr   = sorted.filter(e => e.date === dateStr);
+    const future = sorted.filter(e => e.date > dateStr);
+
+    const tiles = [...prev.slice(-2), ...curr, ...future.slice(0, 2)];
+    if (!tiles.length) return;
+
+    carousel.innerHTML = tiles.map(ev => {
+      const isCurr = curr.includes(ev);
+      return `<article class="event-tile${isCurr ? ' is-current' : ''}" role="listitem" data-event-date="${ev.date}">
+        <p class="event-tile__date">${_fmtDate(ev.date)}</p>
+        <p class="event-tile__name">${ev.name}</p>
+        <p class="event-tile__time">${ev.time}</p>
+      </article>`;
+    }).join('');
+
+    // Only scroll-center on mobile (carousel is horizontal scroll)
+    if (!_isDesktop()) {
+      requestAnimationFrame(() => {
+        const target = carousel.querySelector('.event-tile.is-current')
+                    || carousel.querySelector('.event-tile');
+        if (!target) return;
+        const scrollTo = target.offsetLeft - (carousel.clientWidth - target.offsetWidth) / 2;
+        if (smooth) {
+          carousel.scrollTo({ left: scrollTo, behavior: 'smooth' });
+        } else {
+          carousel.scrollLeft = scrollTo;
+        }
+      });
+    }
+  }
+
+  _updateCarousel(selectedDateStr, false);
+
+  const picker = new DatePicker(datepickerEl, {
+    closedDays: [1],
+    events: EVENTS.map(e => ({ date: new Date(e.date + 'T00:00:00') })),
+    onSelect(date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const isToday = date.getTime() === today.getTime();
+      dateLabel.textContent = isToday
+        ? CONTENT.BOOKING.todayLabel
+        : `${MONTH_SHORT[date.getMonth()]} ${date.getDate()}`;
+      selectedDateStr = [
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, '0'),
+        String(date.getDate()).padStart(2, '0'),
+      ].join('-');
+      dateTrigger.setAttribute('aria-expanded', 'false');
+      datepickerEl.hidden = true;
+      datepickerEl.style.cssText = '';
+      _clearTimeSelection();
+      _updateCarousel(selectedDateStr, true);
+    }
+  });
+
+  function _isDatepickerOverlay() {
+    return window.matchMedia('(min-width: 420px)').matches;
+  }
+
+  function _positionDatepicker() {
+    if (!_isDatepickerOverlay()) {
+      datepickerEl.style.cssText = '';
+      return;
+    }
+    if (datepickerEl.hidden) return;
+    const rect = dateTrigger.getBoundingClientRect();
+    const pickerWidth = 312;
+    const margin = 8;
+    let left = rect.left + rect.width / 2 - pickerWidth / 2;
+    left = Math.max(margin, Math.min(left, window.innerWidth - pickerWidth - margin));
+    datepickerEl.style.cssText =
+      `position:fixed;top:${rect.bottom + 4}px;left:${left}px;z-index:150;`;
+  }
+
+  window.addEventListener('resize', _positionDatepicker);
+
+  dateTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const willOpen = datepickerEl.hidden;
+    _closeAll();
+    if (willOpen) {
+      datepickerEl.hidden = false;
+      dateTrigger.setAttribute('aria-expanded', 'true');
+      _positionDatepicker();
+    }
+  });
+
+  partyTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const willOpen = partyPanel.hidden;
+    _closeAll();
+    if (willOpen) {
+      partyPanel.removeAttribute('hidden');
+      partyTrigger.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  partyPanel.querySelectorAll('.dropdown__option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const v = opt.dataset.value;
+      partyTrigger.querySelector('.dropdown__value').textContent =
+        v === '1' ? '1 guest' : `Party of ${v}`;
+      partyPanel.querySelectorAll('.dropdown__option').forEach(o =>
+        o.classList.toggle('is-selected', o === opt));
+      partyPanel.setAttribute('hidden', '');
+      partyTrigger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  const timePicker = new TimePicker(timePanel, {
+    onSelect(time) {
+      timeTrigger.querySelector('.dropdown__value').textContent = time;
+      timePanel.setAttribute('hidden', '');
+      timeTrigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  timeTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const willOpen = timePanel.hidden;
+    _closeAll();
+    if (willOpen) {
+      timePanel.removeAttribute('hidden');
+      timeTrigger.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  timesGrid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.time-btn');
+    if (!btn) return;
+    if (btn.dataset.time === selectedTime) {
+      btn.classList.remove('is-selected');
+      selectedTime = null;
+      _updateCta(false);
+    } else {
+      timesGrid.querySelectorAll('.time-btn.is-selected').forEach(b => b.classList.remove('is-selected'));
+      btn.classList.add('is-selected');
+      selectedTime = btn.dataset.time;
+      _updateCta(true, btn.dataset.time, btn.dataset.location);
+    }
+  });
+
+  reserveCta.addEventListener('click', () => {
+    if (!selectedTime) return;
+    window.location.href = 'finalize.html';
+  });
+
+  function _closeAll() {
+    datepickerEl.hidden = true;
+    datepickerEl.style.cssText = '';
+    dateTrigger.setAttribute('aria-expanded', 'false');
+    partyPanel.setAttribute('hidden', '');
+    partyTrigger.setAttribute('aria-expanded', 'false');
+    timePanel.setAttribute('hidden', '');
+    timeTrigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function _clearTimeSelection() {
+    timesGrid.querySelectorAll('.time-btn.is-selected').forEach(b => b.classList.remove('is-selected'));
+    selectedTime = null;
+    _updateCta(false);
+  }
+
+  function _updateCta(active, time, location) {
+    reserveCta.classList.toggle('is-active', active);
+    reserveCta.disabled = !active;
+    reserveCta.setAttribute('aria-disabled', String(!active));
+    reserveCta.setAttribute('aria-label', active
+      ? `Reserve table for ${time} — ${location}`
+      : CONTENT.BOOKING.reserveCtaDisabledLabel);
+  }
+
+  document.addEventListener('click', () => _closeAll());
+
+  document.querySelectorAll('.dropdown').forEach(d =>
+    d.addEventListener('click', e => e.stopPropagation())
+  );
+  datepickerEl.addEventListener('click', e => e.stopPropagation());
+  carousel.addEventListener('click', e => e.stopPropagation());
+  })();
+</script>
+
 </body>
 </html>

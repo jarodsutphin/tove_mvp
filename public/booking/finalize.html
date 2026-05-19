@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalize Reservation &mdash; Kindred</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100..900&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../css/base/reset.css">
+  <link rel="stylesheet" href="../../css/base/tokens.css">
+  <link rel="stylesheet" href="../../css/base/typography.css">
+  <link rel="stylesheet" href="../../css/pages/booking.css">
+  <link rel="stylesheet" href="../../css/pages/finalize.css">
+</head>
+<body>
+
+<main class="booking-page finalize-page">
+
+  <!-- ── Masthead: mobile = restaurant photo · desktop = nav bar ── -->
+  <header class="masthead" role="banner">
+    <img class="masthead__bg"
+         src="https://www.figma.com/api/mcp/asset/f798f698-5b71-4e53-801c-fab6b853830d"
+         alt="Kindred restaurant interior">
+    <nav class="site-nav" aria-label="Kindred navigation">
+      <a href="#" class="site-nav__logo-link" aria-label="Kindred home">
+        <img class="site-nav__logo"
+             src="https://www.figma.com/api/mcp/asset/09b04f12-efaa-42f7-81cb-4c6683caf659"
+             alt="Kindred">
+      </a>
+      <ul class="site-nav__links" role="list">
+        <!-- Populated by content.js -->
+      </ul>
+      <div class="site-nav__actions">
+        <a class="site-nav__icon-btn" href="#"
+           aria-label="Kindred on Instagram" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a class="site-nav__cart-btn" href="#" aria-label="Cart: 0 items">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="site-nav__cart-count" aria-hidden="true">0</span>
+        </a>
+        <a class="site-nav__order-btn" href="#"></a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Reservation header">
+    <div class="hero__backdrop" aria-hidden="true">
+      <img class="hero__bg"
+           src="https://www.figma.com/api/mcp/asset/95bccc80-c468-47c5-8ec9-bea53a5438fb"
+           alt="">
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="hero__back">
+      <button class="hero__back-btn" type="button" aria-label="Go back" onclick="history.back()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <span class="hero__eyebrow"></span>
+    <h1 class="hero__title"></h1>
+  </section>
+
+  <!-- ── Form ─────────────────────────────────────────────────── -->
+  <section class="finalize-section" aria-label="Complete your reservation">
+
+    <!-- Booking summary -->
+    <div class="booking-summary">
+      <p class="booking-summary__timer" id="holdTimer"></p>
+      <div class="booking-summary__row">
+        <p class="booking-summary__text" id="bookingSummary">Party of 2&nbsp;&nbsp;|&nbsp;&nbsp;Saturday, May 16&nbsp;&nbsp;|&nbsp;&nbsp;7:45PM</p>
+        <a href="index.html" class="booking-summary__edit">Edit</a>
+      </div>
+    </div>
+
+    <!-- Name -->
+    <div class="form-field">
+      <label class="form-label" for="guestName">Name</label>
+      <input class="form-input" id="guestName" type="text" name="name"
+             autocomplete="name" spellcheck="false">
+    </div>
+
+    <!-- Email + Phone: stacked on mobile, side-by-side on desktop -->
+    <div class="form-field-row">
+      <div class="form-field">
+        <label class="form-label" for="guestEmail">Email</label>
+        <input class="form-input" id="guestEmail" type="email" name="email"
+               autocomplete="email" inputmode="email">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="guestPhone">Phone</label>
+        <input class="form-input" id="guestPhone" type="tel" name="phone"
+               autocomplete="tel" inputmode="tel">
+      </div>
+    </div>
+
+    <!-- CTA: fixed/sticky on mobile, inline on desktop -->
+    <div class="sticky-cta">
+      <button class="sticky-cta__btn" id="finalizeCta" type="button" disabled
+              aria-disabled="true" aria-label=""></button>
+    </div>
+
+    <!-- Dietary restrictions -->
+    <div class="form-section">
+      <p class="form-section__title"></p>
+      <div class="checkbox-grid" id="dietaryGrid">
+        <!-- Populated by content.js -->
+      </div>
+      <input class="form-input" type="text" name="dietary_other"
+             placeholder="" aria-label="Additional dietary restrictions">
+    </div>
+
+    <!-- Special occasion -->
+    <div class="form-section">
+      <p class="form-section__title form-section__title--strong"></p>
+      <div class="checkbox-grid" id="occasionGrid">
+        <!-- Populated by content.js -->
+      </div>
+      <input class="form-input" type="text" name="occasion_other"
+             placeholder="" aria-label="Other special occasion">
+    </div>
+
+  </section><!-- /finalize-section -->
+
+  <!-- ── Business footer ──────────────────────────────────────── -->
+  <footer class="business-footer">
+    <img class="business-footer__logo"
+         src="https://www.figma.com/api/mcp/asset/fe757572-0bcb-4b26-a391-1d3ec83d3fdd"
+         alt="Kindred">
+    <a class="business-footer__address"
+       href="#"
+       target="_blank" rel="noopener noreferrer"></a>
+    <p class="business-footer__hours"></p>
+    <p class="business-footer__hours"></p>
+  </footer>
+
+</main><!-- /booking-page -->
+
+<script src="../../js/booking/content.js"></script>
+<script>
+  (() => {
+  // ── Populate from content ─────────────────────────────────────
+  document.querySelector('.site-nav__links').innerHTML =
+    CONTENT.BUSINESS.navLinks
+      .map(l => `<li><a class="site-nav__link" href="${l.href}">${l.label}</a></li>`)
+      .join('');
+  const orderBtn = document.querySelector('.site-nav__order-btn');
+  orderBtn.textContent = CONTENT.BUSINESS.orderOnlineLabel;
+  orderBtn.href        = CONTENT.BUSINESS.orderOnlineUrl;
+
+  document.querySelector('.hero__eyebrow').textContent = CONTENT.FINALIZE.heroEyebrow;
+  document.querySelector('.hero__title').textContent   = CONTENT.FINALIZE.heroTitle;
+
+  const finalizeCta = document.getElementById('finalizeCta');
+  finalizeCta.textContent = CONTENT.FINALIZE.finalizeCtaLabel;
+  finalizeCta.setAttribute('aria-label', CONTENT.FINALIZE.finalizeCtaDisabledLabel);
+
+  document.querySelector('.form-section__title:not(.form-section__title--strong)').innerHTML =
+    `${CONTENT.FINALIZE.dietarySectionTitle} <span class="form-section__optional">${CONTENT.FINALIZE.dietarySectionOptional}</span>`;
+  document.querySelector('.form-section__title--strong').textContent = CONTENT.FINALIZE.occasionSectionTitle;
+
+  document.querySelector('[name="dietary_other"]').placeholder  = CONTENT.FINALIZE.dietaryOtherPlaceholder;
+  document.querySelector('[name="occasion_other"]').placeholder = CONTENT.FINALIZE.occasionOtherPlaceholder;
+
+  function _checkboxItem(name, { value, label }) {
+    return `<label class="checkbox-item">
+      <input class="checkbox-input" type="checkbox" name="${name}" value="${value}">
+      <span class="checkbox-box" aria-hidden="true"></span>
+      <span class="checkbox-label">${label}</span>
+    </label>`;
+  }
+  document.getElementById('dietaryGrid').innerHTML =
+    CONTENT.DIETARY.map(item => _checkboxItem('dietary', item)).join('');
+  document.getElementById('occasionGrid').innerHTML =
+    CONTENT.OCCASIONS.map(item => _checkboxItem('occasion', item)).join('');
+
+  const footerAddr = document.querySelector('.business-footer__address');
+  footerAddr.textContent = CONTENT.FOOTER.address;
+  footerAddr.href        = CONTENT.FOOTER.mapsUrl;
+  document.querySelectorAll('.business-footer__hours').forEach((el, i) => {
+    el.textContent = CONTENT.FOOTER.hours[i] ?? '';
+  });
+
+  // ── Hold timer ────────────────────────────────────────────────
+  const timerEl = document.getElementById('holdTimer');
+  let secondsLeft = CONTENT.FINALIZE.holdDurationSeconds;
+
+  function _tick() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    const display = `${m}:${String(s).padStart(2, '0')}`;
+    timerEl.textContent = CONTENT.FINALIZE.holdTimerLabel(display);
+
+    if (secondsLeft === 0) {
+      clearInterval(holdInterval);
+      timerEl.textContent = CONTENT.FINALIZE.holdExpiredMessage;
+      // TODO: release hold in Supabase, redirect after brief pause
+      setTimeout(() => { window.location.href = 'index.html'; }, 3000);
+      return;
+    }
+    secondsLeft--;
+  }
+
+  _tick();
+  const holdInterval = setInterval(_tick, 1000);
+
+  // ── Form validation ───────────────────────────────────────────
+  const nameInput  = document.getElementById('guestName');
+  const emailInput = document.getElementById('guestEmail');
+  const phoneInput = document.getElementById('guestPhone');
+
+  function validate() {
+    const hasName    = nameInput.value.trim().length > 0;
+    const hasContact = emailInput.value.trim().length > 0 || phoneInput.value.trim().length > 0;
+    const valid      = hasName && hasContact;
+
+    finalizeCta.disabled = !valid;
+    finalizeCta.setAttribute('aria-disabled', String(!valid));
+    finalizeCta.classList.toggle('is-active', valid);
+    finalizeCta.setAttribute('aria-label', valid
+      ? CONTENT.FINALIZE.finalizeCtaLabel
+      : CONTENT.FINALIZE.finalizeCtaDisabledLabel);
+  }
+
+  nameInput.addEventListener('input', validate);
+  emailInput.addEventListener('input', validate);
+  phoneInput.addEventListener('input', validate);
+
+  finalizeCta.addEventListener('click', () => {
+    if (finalizeCta.disabled) return;
+    clearInterval(holdInterval);
+    // TODO: submit booking to Supabase, then navigate
+    window.location.href = 'confirmation.html';
+  });
+  })();
+</script>
+
+</body>
+</html>

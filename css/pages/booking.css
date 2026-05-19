@@ -1,1 +1,1000 @@
-/* booking page */
+/* ── Page shell ─────────────────────────────────────────────── */
+.booking-page {
+  width: 100%;
+  background: var(--color-white);
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 80px;
+}
+
+/* ── Masthead ────────────────────────────────────────────────── */
+.masthead {
+  height: 83px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.masthead__bg {
+  position: absolute;
+  width: 105.14%;
+  height: 125.3%;
+  top: -12.74%;
+  left: -3.04%;
+  object-fit: cover;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* ── Hero ────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-48) var(--space-16);
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__bg {
+  position: absolute;
+  width: 105.97%;
+  height: 326.21%;
+  top: -141.65%;
+  left: 0;
+  object-fit: cover;
+  max-width: none;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero__eyebrow {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-12);
+  color: #fff5bf;
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: var(--font-size-28);
+  font-weight: 100;
+  line-height: var(--line-height-28);
+  color: #ffffff;
+  font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 9;
+  width: 100%;
+}
+
+/* ── Booking selector ────────────────────────────────────────── */
+.booking-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-28);
+  padding: var(--space-16) var(--space-16);
+  width: 100%;
+}
+
+/* ── Dropdowns row ───────────────────────────────────────────── */
+.dropdowns {
+  display: flex;
+  gap: var(--space-14);
+  align-items: flex-start;
+}
+
+.dropdown {
+  flex: 1 0 0;
+  min-width: 0;
+  position: relative;
+}
+
+.dropdown__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 var(--space-12);
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  width: 100%;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.dropdown__trigger:hover {
+  border-color: var(--color-brand-teal);
+}
+
+.dropdown__trigger:focus-visible {
+  outline: 2px solid var(--color-brand-teal);
+  outline-offset: 2px;
+}
+
+.dropdown__trigger[aria-expanded="true"] {
+  border-color: var(--color-brand-teal);
+}
+
+.dropdown__value {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown__caret {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-default);
+  transition: transform 0.2s;
+}
+
+.dropdown__trigger[aria-expanded="true"] .dropdown__caret {
+  transform: rotate(180deg);
+}
+
+.dropdown__panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: max-content;
+  min-width: 100%;
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-l);
+  z-index: 20;
+  max-height: 251px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.dropdown__panel[hidden] {
+  display: none;
+}
+
+.dropdown__option {
+  padding: 10px 24px;
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+}
+
+.dropdown__option:hover {
+  background: var(--color-brand-yellow);
+  color: var(--color-brand-orange);
+}
+
+.dropdown__option.is-selected {
+  background: var(--color-brand-yellow);
+  color: var(--color-brand-orange);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ── Datepicker ──────────────────────────────────────────────── */
+.datepicker {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding-bottom: var(--space-16);
+}
+
+.datepicker[hidden] {
+  display: none;
+}
+
+/* ── Datepicker: dropdown overlay at ≥420px ──────────────────── */
+@media (min-width: 420px) {
+  .datepicker:not([hidden]) {
+    width: 312px;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-l);
+    padding: var(--space-16);
+    /* position/top/left injected by JS */
+  }
+}
+
+.datepicker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding-bottom: var(--space-8);
+}
+
+.datepicker__month-year {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.datepicker__month-btn,
+.datepicker__year-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-16);
+  color: var(--color-brand-teal);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+}
+
+.datepicker__month-btn:hover,
+.datepicker__year-btn:hover {
+  background: rgba(26, 91, 86, 0.08);
+}
+
+.datepicker__caret {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.datepicker__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.datepicker__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-default);
+  transition: background 0.15s;
+}
+
+.datepicker__nav-btn:hover {
+  background: var(--color-bg-disabled);
+}
+
+/* 7-column calendar grid — fluid width, square cells */
+.datepicker__calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.datepicker__day-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-12);
+  color: var(--color-text-day-header);
+}
+
+.datepicker__day-spacer {
+  aspect-ratio: 1;
+}
+
+.datepicker__day {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  min-height: 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-12);
+  color: var(--color-brand-teal-dark);
+  transition: background 0.15s;
+}
+
+.datepicker__day:hover:not(:disabled) {
+  background: rgba(255, 245, 191, 0.6);
+}
+
+.datepicker__day:disabled {
+  color: var(--color-border-light);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Selected date: square-ish 8px radius (not pill), orange on yellow */
+.datepicker__day.is-selected {
+  background: var(--color-brand-yellow);
+  border-radius: var(--radius-md);
+  color: var(--color-brand-orange);
+  font-weight: var(--font-weight-semibold);
+  cursor: default;
+}
+
+/* Event dot: small orange circle top-right */
+.datepicker__day.has-event::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-brand-orange);
+  border-radius: 50%;
+}
+
+/* ── Available times ──────────────────────────────────────────── */
+.available-times {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.times__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.times__title {
+  font-family: var(--font-body);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-16);
+  color: var(--color-text-default);
+}
+
+.times__sub {
+  font-family: var(--font-body);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-10);
+  color: var(--color-text-soft);
+}
+
+.times__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+/* ── Time button ─────────────────────────────────────────────── */
+.time-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-8) var(--space-8);
+  background: var(--color-brand-yellow);
+  border-radius: var(--radius-pill);
+  color: var(--color-brand-orange);
+  cursor: pointer;
+  transition: box-shadow 0.15s, background 0.15s, color 0.15s;
+}
+
+.time-btn:hover {
+  box-shadow: 0 2px 8px rgba(255, 87, 16, 0.25);
+}
+
+.time-btn.is-selected {
+  background: var(--color-brand-teal);
+  color: var(--color-white);
+}
+
+.time-btn__check {
+  display: none;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.time-btn.is-selected .time-btn__check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-btn__time {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: 14px;
+  text-align: center;
+}
+
+.time-btn__location {
+  font-family: var(--font-body);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-regular);
+  line-height: 14px;
+  text-align: center;
+}
+
+/* ── Back button in hero ─────────────────────────────────────── */
+.hero__back {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  position: relative;
+}
+
+.hero__back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.hero__back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.hero__back-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+
+/* ── Sticky CTA ──────────────────────────────────────────────── */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-16);
+  background: var(--color-white);
+  border-top: 1px solid var(--color-bg-disabled);
+  box-shadow: 0 -2px 4px rgba(34, 48, 60, 0.08);
+  z-index: 100;
+}
+
+.sticky-cta__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 210px;
+  height: 48px;
+  padding: 0 var(--space-32, 2rem);
+  background: var(--color-bg-disabled);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sticky-cta__btn.is-active {
+  background: var(--color-brand-orange);
+  color: var(--color-brand-yellow);
+  cursor: pointer;
+}
+
+.sticky-cta__btn.is-active:hover {
+  background: #e04d0e;
+}
+
+/* ── Forecast ────────────────────────────────────────────────── */
+.forecast {
+  padding: var(--space-16);
+  width: 100%;
+}
+
+.forecast-tile {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  width: 100%;
+  /* Match Figma 357×167 aspect ratio */
+  aspect-ratio: 357 / 167;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.forecast-tile__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.forecast-tile__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 16.9%, rgba(0,0,0,0.2) 100%);
+  pointer-events: none;
+}
+
+/* tl + br rounded, tr + bl square — corner badge */
+.forecast-tile__label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  background: var(--color-brand-orange);
+  padding: var(--space-8) var(--space-24);
+  border-radius: var(--radius-lg) 0 var(--radius-lg) 0;
+}
+
+.forecast-tile__label-text {
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  line-height: 14px;
+  color: #fff5bf;
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+
+.forecast-tile__details {
+  position: relative;
+  padding: 0 var(--space-16) var(--space-16);
+  color: #fff5f0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.forecast-tile__temp {
+  font-family: var(--font-display);
+  font-size: var(--font-size-48);
+  font-weight: 100;
+  line-height: 1;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+}
+
+.forecast-tile__desc {
+  font-family: var(--font-body);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-10);
+}
+
+/* ── Events ──────────────────────────────────────────────────── */
+.events {
+  padding: var(--space-16) 0 var(--space-40);
+}
+
+.events__header {
+  padding: 0 var(--space-16) var(--space-16);
+  display: flex;
+  flex-direction: column;
+}
+
+.events__title {
+  font-family: var(--font-body);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-16);
+  color: var(--color-text-default);
+}
+
+.events__sub {
+  font-family: var(--font-body);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-10);
+  color: var(--color-text-soft);
+}
+
+.events__carousel {
+  display: flex;
+  gap: var(--space-16);
+  overflow-x: auto;
+  padding: 0 var(--space-16);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.events__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.event-tile {
+  flex-shrink: 0;
+  width: 300px;
+  background: var(--color-brand-warm);
+  border: 1px solid var(--color-brand-warm-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.event-tile__date {
+  font-family: var(--font-body);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-light);
+  color: var(--color-brand-orange);
+  line-height: 1;
+}
+
+.event-tile__name {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: 14px;
+  color: var(--color-brand-teal-dark);
+}
+
+.event-tile__time {
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: 14px;
+  color: var(--color-brand-teal-dark);
+}
+
+/* ── Map ─────────────────────────────────────────────────────── */
+.map-section {
+  position: relative;
+  height: 284px;
+  overflow: hidden;
+}
+
+.map-section__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+/* ── Site nav (base: hidden on mobile) ───────────────────────── */
+.site-nav {
+  display: none;
+}
+
+/* ── Content grid (base: flex column for mobile) ─────────────── */
+.content-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+/* display:contents removes the __left box so its children
+   participate directly in the content-grid flex layout,
+   enabling CSS order to control mobile sequence. */
+.content-grid__left {
+  display: contents;
+}
+
+/* Forecast tile: shorter between 530px and 768px */
+@media (min-width: 530px) and (max-width: 767px) {
+  .forecast-tile {
+    aspect-ratio: 357 / 112;
+  }
+}
+
+/* Mobile order: forecast(1) → events(2) → map(3) */
+.content-grid .forecast    { order: 1; }
+.content-grid .events      { order: 2; }
+.content-grid .map-section { order: 3; }
+
+/* ── Business footer ─────────────────────────────────────────── */
+.business-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-16) var(--space-16) var(--space-48);
+  width: 100%;
+}
+
+.business-footer__logo {
+  width: 140px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.business-footer__address {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+  text-decoration: underline;
+  text-align: center;
+}
+
+.business-footer__hours {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Desktop layout  ≥ 768px
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+
+  /* ── Page shell ──────────────────────────────────────────────── */
+  .booking-page {
+    padding-bottom: 0;
+  }
+
+  /* ── Masthead → white nav bar ────────────────────────────────── */
+  .masthead {
+    height: auto;
+    background: var(--color-white);
+    overflow: visible;
+    display: flex;
+    align-items: center;
+  }
+
+  .masthead__bg {
+    display: none;
+  }
+
+  /* ── Site nav ────────────────────────────────────────────────── */
+  .site-nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding: 0 var(--space-40);
+    gap: 0;
+    border-bottom: 1px solid var(--color-bg-disabled);
+  }
+
+  .site-nav__logo-link {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .site-nav__logo {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .site-nav__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-28);
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .site-nav__link {
+    font-family: var(--font-body);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-14);
+    color: var(--color-text-default);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .site-nav__link:hover {
+    color: var(--color-brand-teal);
+  }
+
+  .site-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-16);
+    flex-shrink: 0;
+  }
+
+  .site-nav__icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: var(--color-text-default);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .site-nav__icon-btn:hover {
+    color: var(--color-brand-teal);
+  }
+
+  .site-nav__cart-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    color: var(--color-text-default);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .site-nav__cart-btn:hover {
+    color: var(--color-brand-teal);
+  }
+
+  .site-nav__cart-count {
+    font-family: var(--font-body);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-regular);
+    line-height: 1;
+  }
+
+  .site-nav__order-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 var(--space-20);
+    background: var(--color-brand-orange);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-brand-yellow);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .site-nav__order-btn:hover {
+    background: #e04d0e;
+  }
+
+  /* ── Hero ────────────────────────────────────────────────────── */
+  .hero__title {
+    font-size: 56px;
+    line-height: 64px;
+  }
+
+  /* ── Booking selector ────────────────────────────────────────── */
+  .booking-selector {
+    max-width: 834px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 56px var(--space-16) 32px;
+  }
+
+  /* ── Time buttons: flex-wrap instead of 3-col grid ───────────── */
+  .times__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .time-btn {
+    width: 112px;
+    flex-shrink: 0;
+    padding: var(--space-8) var(--space-16);
+  }
+
+  /* ── Sticky CTA → inline on desktop ──────────────────────────── */
+  .sticky-cta {
+    position: static;
+    background: none;
+    border-top: 1px solid var(--color-bg-disabled);
+    box-shadow: none;
+    padding: var(--space-16) 0 0;
+  }
+
+  /* ── Content grid: 2-col layout ──────────────────────────────── */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: var(--space-48);
+    max-width: 834px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--space-16) var(--space-40);
+    align-items: start;
+  }
+
+  /* Restore __left as a proper flex column (left grid cell) */
+  .content-grid__left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+    padding: var(--space-16) 0;
+    grid-column: 1;
+  }
+
+  /* Events occupies the full right column */
+  .content-grid .events {
+    grid-column: 2;
+    order: 0;
+    padding: var(--space-16) 0 var(--space-40);
+  }
+
+  /* Reset mobile ordering on forecast/map (now inside __left) */
+  .content-grid .forecast,
+  .content-grid .map-section {
+    order: 0;
+  }
+
+  /* ── Forecast: no side padding in grid column ────────────────── */
+  .content-grid .forecast {
+    padding: 0;
+    width: 100%;
+  }
+
+  /* ── Map: border-radius on desktop ───────────────────────────── */
+  .map-section {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 284px;
+  }
+
+  /* ── Events: vertical stack (no horizontal scroll) ───────────── */
+  .events__carousel {
+    flex-direction: column;
+    overflow-x: visible;
+    padding: 0 var(--space-16);
+  }
+
+  .event-tile {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  /* ── Business footer ─────────────────────────────────────────── */
+  .business-footer {
+    padding-bottom: var(--space-40);
+  }
+
+}

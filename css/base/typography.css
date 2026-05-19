@@ -1,1 +1,54 @@
-/* typography */
+/* Geist: https://fonts.google.com/specimen/Geist */
+/* Fraunces: https://fonts.google.com/specimen/Fraunces */
+
+.text-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-12);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.text-display {
+  font-family: var(--font-display);
+  font-size: var(--font-size-28);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-28);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 9;
+}
+
+.text-section-title {
+  font-family: var(--font-body);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-16);
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+}
+
+.text-small {
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-12);
+}
+
+.text-small-semibold {
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-12);
+}
+
+.text-xs {
+  font-family: var(--font-body);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-10);
+}

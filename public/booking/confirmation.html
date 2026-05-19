@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation Confirmed &mdash; Kindred</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100..900&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../css/base/reset.css">
+  <link rel="stylesheet" href="../../css/base/tokens.css">
+  <link rel="stylesheet" href="../../css/base/typography.css">
+  <link rel="stylesheet" href="../../css/pages/booking.css">
+  <link rel="stylesheet" href="../../css/pages/confirmation.css">
+</head>
+<body>
+
+<main class="booking-page confirmation-page">
+
+  <!-- ── Masthead ─────────────────────────────────────────────── -->
+  <header class="masthead" role="banner">
+    <img class="masthead__bg"
+         src="https://www.figma.com/api/mcp/asset/32359dc2-b231-4983-a67a-d98322df5a98"
+         alt="Kindred restaurant interior">
+    <nav class="site-nav" aria-label="Kindred navigation">
+      <a href="#" class="site-nav__logo-link" aria-label="Kindred home">
+        <img class="site-nav__logo"
+             src="https://www.figma.com/api/mcp/asset/09b04f12-efaa-42f7-81cb-4c6683caf659"
+             alt="Kindred">
+      </a>
+      <ul class="site-nav__links" role="list">
+        <!-- Populated by content.js -->
+      </ul>
+      <div class="site-nav__actions">
+        <a class="site-nav__icon-btn" href="#"
+           aria-label="Kindred on Instagram" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a class="site-nav__cart-btn" href="#" aria-label="Cart: 0 items">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="site-nav__cart-count" aria-hidden="true">0</span>
+        </a>
+        <a class="site-nav__order-btn" href="#"></a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Reservation confirmed">
+    <div class="hero__backdrop" aria-hidden="true">
+      <img class="hero__bg"
+           src="https://www.figma.com/api/mcp/asset/5ddb81a4-f2ca-4785-83ce-8720182be216"
+           alt="">
+      <div class="hero__overlay"></div>
+    </div>
+    <span class="hero__eyebrow"></span>
+    <h1 class="hero__title"></h1>
+  </section>
+
+  <!-- ── Confirmation details ──────────────────────────────────── -->
+  <div class="confirm-section">
+
+    <!-- Date / Time / Party cards -->
+    <div class="confirm-cards">
+      <!-- Date card — full width on mobile, 2fr on desktop -->
+      <div class="confirm-card">
+        <p class="confirm-card__label">Date</p>
+        <p class="confirm-card__value" id="confirmDate">Saturday, May 16</p>
+      </div>
+
+      <!-- Time + Party — 3-col row on mobile, flattened into grid on desktop -->
+      <div class="confirm-row">
+        <div class="confirm-card confirm-card--span2">
+          <p class="confirm-card__label">Time</p>
+          <p class="confirm-card__value" id="confirmTime">7:45PM</p>
+        </div>
+        <div class="confirm-card">
+          <p class="confirm-card__label">Party of</p>
+          <p class="confirm-card__value" id="confirmParty">2</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional details card — TODO: wire up from form state -->
+    <div class="confirm-card" id="additionalDetails">
+      <p class="confirm-card__label">Additional details</p>
+      <div class="confirm-details-body">
+        <p class="confirm-details-body__line">
+          <span class="confirm-details-body__key">Dietary restrictions: </span>Fish, Shellfish
+        </p>
+        <p class="confirm-details-body__line">Comment: My wife is allergic to all types of seafood.</p>
+        <br>
+        <p class="confirm-details-body__line">
+          <span class="confirm-details-body__key">Occasion:</span>
+        </p>
+        <p class="confirm-details-body__line">Anniversary</p>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="confirm-actions">
+      <div class="confirm-actions__row">
+        <!-- TODO: generate ICS file from booking data -->
+        <button class="confirm-outline-btn" id="addToCalendar" type="button"></button>
+        <!-- TODO: Web Share API with booking summary -->
+        <button class="confirm-outline-btn" id="shareBtn" type="button"></button>
+      </div>
+
+      <!-- Recurring toggle -->
+      <div class="confirm-toggle-row">
+        <button class="toggle" id="recurringToggle" type="button"
+                role="switch" aria-checked="false"
+                aria-label="Make a recurring reservation">
+          <span class="toggle__knob"></span>
+        </button>
+        <p class="confirm-toggle-label"></p>
+      </div>
+    </div>
+
+    <!-- Tove account card -->
+    <div class="tove-card">
+      <p class="tove-card__message"></p>
+      <!-- TODO: link to guest profile/account page -->
+      <button class="tove-card__cta" type="button"></button>
+      <p class="tove-card__fine-print"></p>
+      <!-- TODO: replace Figma asset URL with production /assets/tove-logo.png -->
+      <img class="tove-card__logo"
+           src="https://www.figma.com/api/mcp/asset/d6f275ef-e54e-4652-b1a0-529a5637959a"
+           alt="Tove">
+    </div>
+
+  </div><!-- /confirm-section -->
+
+  <!-- ── Menu carousel ─────────────────────────────────────────── -->
+  <!-- TODO: populate from business menu data -->
+  <div class="menu-section">
+    <div class="menu-header">
+      <p class="menu-header__title"></p>
+      <p class="menu-header__sub"></p>
+    </div>
+    <div class="menu-carousel" role="list" aria-label="Menu highlights">
+      <div class="menu-item" role="listitem">
+        <img class="menu-item__img"
+             src="https://www.figma.com/api/mcp/asset/8c130f92-14ab-4415-a753-381384205e1f"
+             alt="Squid ink conchiglie">
+        <div class="menu-item__label" aria-hidden="true">
+          <p class="menu-item__name">Squid ink conchiglie</p>
+        </div>
+      </div>
+      <div class="menu-item" role="listitem">
+        <img class="menu-item__img"
+             src="https://www.figma.com/api/mcp/asset/b775688b-f99a-4bff-88ff-e2626c6421ce"
+             alt="Squid ink conchiglie">
+        <div class="menu-item__label" aria-hidden="true">
+          <p class="menu-item__name">Squid ink conchiglie</p>
+        </div>
+      </div>
+      <div class="menu-item" role="listitem">
+        <img class="menu-item__img"
+             src="https://www.figma.com/api/mcp/asset/8c130f92-14ab-4415-a753-381384205e1f"
+             alt="Squid ink conchiglie">
+        <div class="menu-item__label" aria-hidden="true">
+          <p class="menu-item__name">Squid ink conchiglie</p>
+        </div>
+      </div>
+      <div class="menu-item" role="listitem">
+        <img class="menu-item__img"
+             src="https://www.figma.com/api/mcp/asset/1f93dff8-8023-4926-ac81-9644f942ed95"
+             alt="Squid ink conchiglie">
+        <div class="menu-item__label" aria-hidden="true">
+          <p class="menu-item__name">Squid ink conchiglie</p>
+        </div>
+      </div>
+      <div class="menu-item" role="listitem">
+        <img class="menu-item__img"
+             src="https://www.figma.com/api/mcp/asset/8c130f92-14ab-4415-a753-381384205e1f"
+             alt="Squid ink conchiglie">
+        <div class="menu-item__label" aria-hidden="true">
+          <p class="menu-item__name">Squid ink conchiglie</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Recurring bottom sheet ───────────────────────────────── -->
+  <div class="sheet-overlay" id="sheetOverlay" aria-hidden="true">
+    <div class="sheet" id="recurringSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+
+      <div class="sheet__header">
+        <h2 class="sheet__title" id="sheetTitle"></h2>
+        <button class="sheet__close" type="button" id="sheetClose" aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="sheet__body">
+        <p class="sheet__intro"></p>
+
+        <div class="sheet__field">
+          <p class="sheet__field-label">Frequency</p>
+          <div class="sheet__options" id="frequencyOptions" role="radiogroup" aria-label="Reservation frequency">
+            <!-- Populated by content.js -->
+          </div>
+        </div>
+
+        <button class="sheet__confirm" type="button" id="sheetConfirm"></button>
+
+        <p class="sheet__disclaimer"></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Business footer ──────────────────────────────────────── -->
+  <footer class="business-footer">
+    <img class="business-footer__logo"
+         src="https://www.figma.com/api/mcp/asset/4bc82e25-4b20-41c8-99df-2b5a74e97e4d"
+         alt="Kindred">
+    <a class="business-footer__address"
+       href="#"
+       target="_blank" rel="noopener noreferrer"></a>
+    <p class="business-footer__hours"></p>
+    <p class="business-footer__hours"></p>
+  </footer>
+
+</main><!-- /booking-page -->
+
+<script src="../../js/booking/content.js"></script>
+<script>
+  (() => {
+  // ── Populate from content ─────────────────────────────────────
+  document.querySelector('.site-nav__links').innerHTML =
+    CONTENT.BUSINESS.navLinks
+      .map(l => `<li><a class="site-nav__link" href="${l.href}">${l.label}</a></li>`)
+      .join('');
+  const orderBtn = document.querySelector('.site-nav__order-btn');
+  orderBtn.textContent = CONTENT.BUSINESS.orderOnlineLabel;
+  orderBtn.href        = CONTENT.BUSINESS.orderOnlineUrl;
+
+  document.querySelector('.hero__eyebrow').textContent = CONTENT.CONFIRMATION.heroEyebrow;
+  document.querySelector('.hero__title').textContent   = CONTENT.CONFIRMATION.heroTitle;
+
+  document.getElementById('addToCalendar').textContent = CONTENT.CONFIRMATION.addToCalendarLabel;
+  document.getElementById('shareBtn').textContent      = CONTENT.CONFIRMATION.shareLabel;
+  document.querySelector('.confirm-toggle-label').textContent = CONTENT.CONFIRMATION.recurringToggleLabel;
+
+  document.getElementById('sheetTitle').textContent    = CONTENT.CONFIRMATION.recurringSheetTitle;
+  document.querySelector('.sheet__intro').innerHTML    = CONTENT.CONFIRMATION.recurringSheetIntro;
+  document.querySelector('.sheet__disclaimer').textContent = CONTENT.CONFIRMATION.recurringSheetDisclaimer;
+  document.getElementById('sheetConfirm').textContent  = CONTENT.CONFIRMATION.sheetConfirmLabel;
+
+  document.getElementById('frequencyOptions').innerHTML =
+    CONTENT.CONFIRMATION.recurringFrequencies.map(f => `
+      <label class="sheet__option">
+        <input class="sheet__radio" type="radio" name="frequency" value="${f.value}"${f.defaultChecked ? ' checked' : ''}>
+        <span class="sheet__radio-box" aria-hidden="true"></span>
+        <span class="sheet__option-label">${f.label}</span>
+      </label>`).join('');
+
+  document.querySelector('.tove-card__message').textContent  = CONTENT.CONFIRMATION.toveCardMessage;
+  document.querySelector('.tove-card__cta').textContent      = CONTENT.CONFIRMATION.toveCardCtaLabel;
+  document.querySelector('.tove-card__fine-print').innerHTML = CONTENT.CONFIRMATION.toveCardFinePrint;
+
+  document.querySelector('.menu-header__title').textContent = CONTENT.CONFIRMATION.menuSectionHeader;
+  document.querySelector('.menu-header__sub').textContent   = CONTENT.CONFIRMATION.menuSectionSub;
+
+  const footerAddr = document.querySelector('.business-footer__address');
+  footerAddr.textContent = CONTENT.FOOTER.address;
+  footerAddr.href        = CONTENT.FOOTER.mapsUrl;
+  document.querySelectorAll('.business-footer__hours').forEach((el, i) => {
+    el.textContent = CONTENT.FOOTER.hours[i] ?? '';
+  });
+
+  // ── Sheet open / close ────────────────────────────────────────
+  const toggle      = document.getElementById('recurringToggle');
+  const overlay     = document.getElementById('sheetOverlay');
+  const sheetClose  = document.getElementById('sheetClose');
+  const sheetConfirm = document.getElementById('sheetConfirm');
+
+  function openSheet() {
+    overlay.classList.add('is-open');
+    overlay.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+    sheetClose.focus();
+  }
+
+  function closeSheet(turnOffToggle = true) {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (turnOffToggle) {
+      toggle.setAttribute('aria-checked', 'false');
+    }
+  }
+
+  // ── Toggle ────────────────────────────────────────────────────
+  toggle.addEventListener('click', () => {
+    const on = toggle.getAttribute('aria-checked') === 'true';
+    if (on) {
+      toggle.setAttribute('aria-checked', 'false');
+      closeSheet(false);
+    } else {
+      toggle.setAttribute('aria-checked', 'true');
+      openSheet();
+    }
+  });
+
+  // ── Close via X button ────────────────────────────────────────
+  sheetClose.addEventListener('click', () => closeSheet(true));
+
+  // ── Close via overlay backdrop ────────────────────────────────
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeSheet(true);
+  });
+
+  // ── Close via Escape ──────────────────────────────────────────
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeSheet(true);
+  });
+
+  // ── Confirm frequency ─────────────────────────────────────────
+  sheetConfirm.addEventListener('click', () => {
+    const selected = document.querySelector('.sheet__radio:checked');
+    if (!selected) return;
+    // TODO: save recurring series to Supabase via create_recurring_series RPC
+    console.log('Recurring frequency:', selected.value);
+    closeSheet(false); // keep toggle ON
+  });
+
+  // ── Add to calendar ───────────────────────────────────────────
+  document.getElementById('addToCalendar').addEventListener('click', () => {
+    // TODO: generate ICS from booking data and trigger download
+    console.log('Add to calendar');
+  });
+
+  // ── Share ─────────────────────────────────────────────────────
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Reservation at Kindred',
+          text: 'Saturday, May 16 at 7:45PM — Party of 2',
+        });
+      } catch (_) { /* user cancelled */ }
+    }
+  });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,558 @@
+/* ── Confirmation page overrides ─────────────────────────────── */
+.confirmation-page {
+  padding-bottom: 0;
+}
+
+.confirmation-page .hero {
+  padding-bottom: var(--space-48);
+}
+
+/* ── Confirm section shell ───────────────────────────────────── */
+.confirm-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-32) var(--space-16) var(--space-16);
+  width: 100%;
+}
+
+/* ── Cards wrapper: stacked on mobile, 3-col grid on desktop ── */
+.confirm-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* ── Summary cards ───────────────────────────────────────────── */
+.confirm-card {
+  background: #fdf8de;
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+}
+
+.confirm-card__label {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+}
+
+.confirm-card__value {
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 100;
+  font-variation-settings: 'wght' 215, 'SOFT' 0, 'WONK' 1;
+  line-height: normal;
+  color: #ce4f19;
+  width: 100%;
+}
+
+/* Time + Party row — 3-col grid */
+.confirm-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-16);
+}
+
+.confirm-card--span2 {
+  grid-column: span 2;
+}
+
+/* Additional details body */
+.confirm-details-body {
+  margin-top: var(--space-4);
+}
+
+.confirm-details-body__line {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+}
+
+.confirm-details-body__key {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ── Action buttons ──────────────────────────────────────────── */
+.confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding-bottom: var(--space-8);
+}
+
+.confirm-actions__row {
+  display: flex;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.confirm-outline-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 var(--space-24);
+  border: 1px solid #24a89e;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-14);
+  color: var(--color-brand-teal-dark);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.confirm-outline-btn:hover {
+  background: rgba(26, 71, 67, 0.06);
+}
+
+/* ── Recurring toggle row ────────────────────────────────────── */
+.confirm-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.toggle {
+  flex-shrink: 0;
+  width: 36px;
+  height: 20px;
+  background: var(--color-border-light);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle[aria-checked="true"] {
+  background: var(--color-brand-teal);
+}
+
+.toggle__knob {
+  width: 16px;
+  height: 16px;
+  background: var(--color-white);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.toggle[aria-checked="true"] .toggle__knob {
+  transform: translateX(16px);
+}
+
+.confirm-toggle-label {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+}
+
+/* ── Tove account card ───────────────────────────────────────── */
+.tove-card {
+  background: var(--color-brand-warm);
+  border: 1px solid var(--color-brand-warm-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.tove-card__message {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-14);
+  color: var(--color-brand-teal-dark);
+}
+
+.tove-card__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  height: 32px;
+  max-width: 210px;
+  padding: 0 var(--space-24);
+  background: var(--color-brand-orange);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-14);
+  color: var(--color-brand-yellow);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tove-card__cta:hover {
+  background: #e04d0e;
+}
+
+.tove-card__fine-print {
+  font-family: var(--font-body);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-10);
+  color: var(--color-brand-teal-dark);
+}
+
+.tove-card__link {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.tove-card__logo {
+  width: 60px;
+  height: 20.9px;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+/* ── Bottom sheet overlay ────────────────────────────────────── */
+.sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sheet-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sheet {
+  width: 100%;
+  background: var(--color-white);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-top: 1px solid var(--color-bg-disabled);
+  border-left: 1px solid var(--color-bg-disabled);
+  border-right: 1px solid var(--color-bg-disabled);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.sheet-overlay.is-open .sheet {
+  transform: translateY(0);
+}
+
+/* ── Sheet header ────────────────────────────────────────────── */
+.sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-16);
+}
+
+.sheet__title {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 24px;
+  color: var(--color-brand-teal-dark);
+}
+
+.sheet__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--color-text-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sheet__close:hover {
+  background: var(--color-bg-disabled);
+}
+
+.sheet__close:focus-visible {
+  outline: 2px solid var(--color-brand-teal);
+  outline-offset: 2px;
+}
+
+/* ── Sheet body ──────────────────────────────────────────────── */
+.sheet__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: 0 var(--space-16) var(--space-32);
+}
+
+.sheet__intro {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+}
+
+/* ── Frequency options ───────────────────────────────────────── */
+.sheet__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-8) 0;
+}
+
+.sheet__field-label {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+}
+
+.sheet__options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sheet__option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  cursor: pointer;
+  min-height: 20px;
+}
+
+/* Visually hidden native radio */
+.sheet__radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Custom radio box — square with teal checked state to match Figma */
+.sheet__radio-box {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.sheet__radio:checked + .sheet__radio-box {
+  background-color: var(--color-brand-teal);
+  border-color: var(--color-brand-teal);
+  background-image: url("data:image/svg+xml,%3Csvg width='11' height='8' viewBox='0 0 11 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5L4 6.5L10 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.sheet__radio:focus-visible + .sheet__radio-box {
+  outline: 2px solid var(--color-brand-teal);
+  outline-offset: 2px;
+}
+
+.sheet__option:hover .sheet__radio-box {
+  border-color: var(--color-brand-teal);
+}
+
+.sheet__option-label {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+  color: var(--color-text-default);
+  user-select: none;
+  padding-top: 1px;
+}
+
+/* ── Confirm button ──────────────────────────────────────────── */
+.sheet__confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 210px;
+  height: 48px;
+  align-self: center;
+  background: var(--color-brand-orange);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+  color: var(--color-brand-yellow);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sheet__confirm:hover {
+  background: #e04d0e;
+}
+
+/* ── Disclaimer ──────────────────────────────────────────────── */
+.sheet__disclaimer {
+  font-family: var(--font-body);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-10);
+  color: var(--color-text-day-header);
+}
+
+/* ── Menu section ────────────────────────────────────────────── */
+.menu-section {
+  width: 100%;
+  padding: var(--space-32) 0 var(--space-40);
+}
+
+.menu-header {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--space-16) var(--space-16);
+}
+
+.menu-header__title {
+  font-family: var(--font-body);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-16);
+  color: var(--color-text-default);
+}
+
+.menu-header__sub {
+  font-family: var(--font-body);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-10);
+  color: var(--color-text-soft);
+}
+
+.menu-carousel {
+  display: flex;
+  gap: var(--space-16);
+  overflow-x: auto;
+  padding: 0 var(--space-16);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.menu-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-item {
+  flex-shrink: 0;
+  width: 240px;
+  height: 240px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.menu-item__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-item__label {
+  position: relative;
+  background: rgba(24, 58, 55, 0.8);
+  padding: var(--space-8) var(--space-16) var(--space-16);
+  width: 100%;
+}
+
+.menu-item__name {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-14);
+  color: var(--color-white);
+}
+
+/* ── Desktop ─────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .confirm-section {
+    max-width: 834px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 56px var(--space-16) 32px;
+  }
+
+  /* 3-column card row: Date(2fr) | Time(1fr) | Party(1fr) */
+  .confirm-cards {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-16);
+  }
+
+  /* Remove confirm-row's own grid so its children become direct grid cells */
+  .confirm-row {
+    display: contents;
+  }
+
+  /* Time card was spanning 2 on mobile; reset to single cell on desktop */
+  .confirm-card--span2 {
+    grid-column: auto;
+  }
+
+  /* Menu section is hidden on desktop per Figma */
+  .menu-section {
+    display: none;
+  }
+
+  /* ── Bottom sheet → centered modal on desktop ────────────────── */
+  .sheet-overlay {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sheet {
+    width: 480px;
+    max-width: calc(100vw - 32px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-bg-disabled);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transform: scale(0.96);
+    transition: transform 0.25s ease;
+  }
+
+  .sheet-overlay.is-open .sheet {
+    transform: scale(1);
+  }
+}
